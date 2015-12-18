@@ -12,9 +12,10 @@
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
+
   <nav class="teal" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="./images/pantrypartylogo.png" class="brand-logo">Pantry Party</a>
+      <a id="logo-container" href="./images/pantrypartylogo.png" class="brand-logo"><img src="./images/smallLogo.png" alt="logo" style=""></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="#">Search</a></li>
       </ul>
@@ -30,29 +31,30 @@
     <div class="section no-pad-bot">
       <div class="container">
         <br><br>
-        <h1 class="header center teal-text text-lighten-2">Pantry Party</h1>
+        <h1 class="header center"><img src="./images/pantryLogo.png" alt="logo" style=""></h1>
         <div class="row center">
           <h5 class="header col s12 light">Gourmet style cooking, with whatever's in the pantry.</h5>
         </div>
         <div class="row center">
           <div class="input-field col s6 push-s3">
-        <input placeholder="What's in your pantry?" id="search" type="text" class="validate">
+        <input placeholder="What's in your pantry?" id="keyword" type="text" class="validate">
           <label for="search"></label>
-    
           <a href="" id="search-button" class="btn-large waves-effect waves-light teal lighten-1">Find recipies!</a>
         </div>
         </div>
         <br><br>
 
+
+        <!-- <h2>Search Results:</h2>
+          <div id="result"></div> -->
+
+          
       </div>
     </div>
     <div class="parallax"><img src="./images/homeBackground.jpg" alt="homeBackground"></div>
   </div>
-
-
   <div class="container">
     <div class="section">
-
        <div class="row">
         <div class="col s12 center">
           <h3><i class="brown-text"></i></h3>
@@ -233,11 +235,7 @@
         <div class="col l3 s12">
           <h5 class="white-text">Social</h5>
          </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Nearby</h5>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">About</h5>
+       
           
         </div>
       </div>
@@ -254,6 +252,7 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="/js/materialize.js"></script>
   <script src="js/init.js"></script>
+  <script src="form.js"></script>
 
   </body>
 </html>
