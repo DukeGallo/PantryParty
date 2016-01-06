@@ -1,34 +1,56 @@
-var express = require('express');
+var express = require('express');                    //setting up router
 var router = express.Router();
 var request = require('request');
 var bodyParser = require('body-parser');
 var textParser = bodyParser.text();
  
-var options = {
-  url: 'http://api.bigoven.com/recipes/?api_key=5CWa265SNXT70ACQbGJ2CFrpi1c6j85v&any_kw=',
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  }
-};
+// function callback(error, response, body) {
+//   if (!error && response.statusCode == 200) {
+//     var info = JSON.parse(body);
+//   }
+// }
  
-function callback(error, response, body) {
-  if (!error && response.statusCode == 200) {
-    var info = JSON.parse(body);
-  }
-}
- 
-request(options, callback);
+//request(options, callback);
 
- 
-router.post('/', textParser, function(req,res) {
+router.post('/', textParser, function(req,res) {    //bringing in API
   var input = req.body;
-  request.get('http://api.bigoven.com/recipes/?api_key=5CWa265SNXT70ACQbGJ2CFrpi1c6j85v&any_kw='+ input, function (error, res, body) {
+  var url = 'http://api.bigoven.com/recipes/?api_key=5CWa265SNXT70ACQbGJ2CFrpi1c6j85v&pg=1&rpp=10&any_kw=' + input;
+  console.log(url);
+  var options = {
+      url: url,
+      headers: {
+        'Accept': 'application/json',                //accepting Json not XHTML      
+        'Content-Type': 'application/json'
+      }
+    };
+  request.get(options, function (error, response, body) {
     if (!error && res.statusCode == 200) {
-      var description = JSON.parse(body);
-       description = JSON.stringify(description.response.docs[0]);
-       console.log(description);
-       res.send(description);
+        var data = JSON.parse(body);
+        var ids = [];
+        for (var i = 0; i < 6; i++) {
+            ids.push(data.Results[i].RecipeID);
+        }
+        
+        var recipeUrl = 'http://api.bigoven.com/recipe/' + ids[0] + '/?api_key=5CWa265SNXT70ACQbGJ2CFrpi1c6j85v';
+        var recipeRequest = {
+            url: recipeUrl,
+            headers: {
+                'Accept': 'application/json',                //accepting Json not XHTML      
+                'Content-Type': 'application/json'
+            }
+        };
+        request.get(recipeRequest, function(error, response, body) {
+            console.log(body);
+        });
+
+        
+        
+        
+        res.send(body);
+
+       
+       console.log('call has been made');
+       
     }
   });
 });
