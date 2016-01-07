@@ -1,18 +1,18 @@
-var express = require('express');                    //setting up router
+var express = require('express');                    
 var router = express.Router();
 var request = require('request');
 var rp = require('request-promise');
 var bodyParser = require('body-parser');
 var textParser = bodyParser.text();
 
-    router.post('/', textParser, function(req,res) {    //bringing in API
+    router.post('/', textParser, function(req,res) {
       var input = req.body;
       var url = 'http://api.bigoven.com/recipes/?api_key=5CWa265SNXT70ACQbGJ2CFrpi1c6j85v&pg=1&rpp=10&any_kw=' + input;
       console.log(url);
       var options = {
         url: url,
         headers: {
-          'Accept': 'application/json',                //accepting Json not XHTML      
+          'Accept': 'application/json',                     
           'Content-Type': 'application/json'
       }
   };
@@ -37,40 +37,7 @@ var textParser = bodyParser.text();
             console.log(body);
         });
 
-
-
-
-
-//          Promise.all([ recipeUrl ]).then(function(body) {
-//           console.log(body);
-//       });
-
-
-
-
-
-        function getRecipie() {
-          return new Promise(function(resolve, reject) {
-            request('/', function(err, body) {
-              resolve(body);
-            });
-          });
-        }
-
-        var thenAble = getRecipie();
-        thenAble.then(function(body) {
-          console.log(body);
-        });
-
-
-
-
-
-
-
     res.send(body);
-
-
     console.log('call has been made');
 
 }
