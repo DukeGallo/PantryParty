@@ -29,7 +29,7 @@ var textParser = bodyParser.text();
       var recipeRequest = {
           url: recipeUrl,
           headers: {
-                'Accept': 'application/json',                //accepting Json not XHTML      
+                'Accept': 'application/json',                     
                 'Content-Type': 'application/json'
             }
         };
@@ -39,9 +39,30 @@ var textParser = bodyParser.text();
 
 
 
-    Promise.all([ recipeUrl ]).then(function(body) {
-     console.log(body);
- });
+
+
+//          Promise.all([ recipeUrl ]).then(function(body) {
+//           console.log(body);
+//       });
+
+
+
+
+
+        function getRecipie() {
+          return new Promise(function(resolve, reject) {
+            request('/', function(err, body) {
+              resolve(body);
+            });
+          });
+        }
+
+        var thenAble = getRecipie();
+        thenAble.then(function(body) {
+          console.log(body);
+        });
+
+
 
 
 
