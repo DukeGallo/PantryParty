@@ -15,9 +15,9 @@ var textParser = bodyParser.text();
           'Accept': 'application/json',                     
           'Content-Type': 'application/json'
       }
-  };
+    };
 
-  request.get(options, function (error, response, body) {
+    request.get(options, function (error, response, body) {
       if (!error && res.statusCode == 200) {
         var data = JSON.parse(body);
         var ids = [];
