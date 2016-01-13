@@ -35,7 +35,7 @@
           <div class="input-field col s6 push-s3">
             <input placeholder="What's in your pantry?" id="keyword" type="text" class="validate">
             <label for="search"></label>
-            <a href="" id="search-button" class="btn-large waves-effect waves-light teal lighten-1">Find recipies!</a>
+            <a href="#search" id="search-button" class="btn-large waves-effect waves-light teal lighten-1">Find recipies!</a>
           </div>
         </div>
       </div>
@@ -69,9 +69,9 @@
       <div class="col s12 center">
         <h3><i class="brown-text"></i></h3>
         <h4>Most searched nearby</h4>
-        <A NAME="card"></a>
+        <div id="card"></div>
         </div>
-        <div class="row">
+        <div class="row" id="recipe-holder">
           <div class="col s12 m4">
             <div class="icon-block">
               <p class="light">
@@ -167,8 +167,6 @@
                 </p>
               </div>
             </div>
-          </div>
-          <div class="row" id="cards">
             <div class="col s12 m4">
               <div class="icon-block">
                 <p class="light">
@@ -250,9 +248,9 @@
                   </div>
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
+            </div> 
+         </div> 
+        </div> 
       </div>
       <div class="parallax-container valign-wrapper">
         <div class="section no-pad-bot">
@@ -268,17 +266,17 @@
         <div class="container">
           <div class="row">
             <div class="col l3 s12">
-              <h5 class="white-text">About</h5>
+              <h6 class="white-text">About</h6>
               <p class="grey-text text-lighten-4"></p>
             </div>
             <div class="col l3 s12">
-              <h5 class="white-text">Contact</h5>
+              <h6 class="white-text">Contact</h6>
             </div>
             <div class="col l3 s12">
-              <h5 class="white-text">Upload</h5>
+              <h6 class="white-text">Upload</h6>
             </div>
             <div class="col l3 s12">
-              <h5 class="white-text">Social</h5>
+              <h6 class="white-text">Social</h6>
             </div>
           </div>
         </div>
@@ -293,7 +291,5 @@
     <script src="/js/materialize.js"></script>
     <script src="js/init.js"></script>
     <script src="form.js"></script>
-    <script src="api.js"></script>
-    <script src="app.js"></script>
-  </body>
-  </html>
+</body>
+</html>

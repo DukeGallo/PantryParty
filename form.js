@@ -11,6 +11,12 @@ document.getElementById('search-button').addEventListener('click', function(e) {
       holder.innerHTML = '';
       for (var i = 0; i < recipes.Results.length; i++) {
         
+        var searchResults = document.createElement('i');
+        searchResults.setAttribute('class', 'brown-text');
+        
+        var id = document.createElement('div');
+        id.setAttribute('id', 'card');
+
         var col = document.createElement('div');
         col.setAttribute('class', 'col s12 m4');
         // col.textContent = recipes.Results[i].RecipeID + ' ' + recipes.Results[i].Title + ' ' + recipes.Results[i].ImageURL;
@@ -58,10 +64,6 @@ document.getElementById('search-button').addEventListener('click', function(e) {
     } 
   }
 
-
-
-
-      
   var keyword = document.getElementById('keyword').value;
   console.log(keyword);
 
