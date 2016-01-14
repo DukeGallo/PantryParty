@@ -5,7 +5,6 @@ document.getElementById('search-button').addEventListener('keypress', function(e
     if (key === 13) {
     }
 });  
-
   var xhr = new XMLHttpRequest();
 
   xhr.onload = function() {
@@ -15,19 +14,13 @@ document.getElementById('search-button').addEventListener('keypress', function(e
       var holder = document.getElementById('recipe-holder');
       holder.innerHTML = '';
       for (var i = 0; i < recipes.Results.length; i++) {
-        
-        // var searchResults = document.createElement('i');
-        // searchResults.setAttribute('class', 'brown-text');
-        
+    
         var id = document.createElement('div');
         id.setAttribute('id', 'card');
 
         var col = document.createElement('div');
         col.setAttribute('class', 'col s12 m4');
-        // col.textContent = recipes.Results[i].RecipeID + 
-        // ' ' + recipes.Results[i].Title + ' ' 
-        // + recipes.Results[i].ImageURL;
-        
+      
         var iconBlock = document.createElement('div');
         iconBlock.setAttribute('class', 'icon-block');
         
@@ -65,25 +58,11 @@ document.getElementById('search-button').addEventListener('keypress', function(e
         col.appendChild(iconBlock);
         holder.appendChild(col);
       }
-      document.getElementById('card').scrollIntoView();
-      // document.getElementById('reveal').addEventListener('click', function(e) {
-      //    e.preventDefault();
-
-      //   var xhr = new XMLHttpRequest();
-
-      //   xhr.onload = function() {
-      //     if(xhr.status === 200) {
-      //       var ingredients = JSON.parse(xhr.responseText);
-      //       var list = document.getElementById('ingredients-list');
-      //       for (var i = 0; i < ingredients.Results.length; i++) {
-
-      //   var ingredientsList = document.createElement('p');
-      //   ingredientsList.setAttribute('id', 'ingredients-list'); 
+      document.getElementById('card').scrollIntoView();e
     }
   };
-
   var keyword = document.getElementById('keyword').value;
-  console.log(keyword);
+  // console.log(keyword);
 
   xhr.open('POST', 'http://localhost:1337/query', true);
   xhr.send(keyword);
