@@ -45,6 +45,7 @@ document.getElementById('search-button').addEventListener('keypress', function(e
         cardTitle.textContent = recipes.Results[i].Title;
        
         var materialIcons = document.createElement('i');
+        materialIcons.setAttribute('data-recipe', recipes.Results[i].RecipeID)
         materialIcons.setAttribute('class', 'material-icons right');
         materialIcons.textContent = 'more_vert';
 
@@ -67,4 +68,50 @@ document.getElementById('search-button').addEventListener('keypress', function(e
   xhr.open('POST', 'http://localhost:1337/query', true);
   xhr.send(keyword);
 }, false);
+ var recipes = document.getElementById('recipe-holder');
 
+ recipes.addEventListener('click', function(theEvent) {
+  var id = theEvent.target.getAttribute('data-recipe');
+  console.log(id);
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/query/' + id);
+  xhr.send();
+
+ })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//  var cardInside = document.getElementById('reveal').addEventListener('click', function(e) {
+// e.preventDefault();
+// var xhr = new XMLHttpRequest();
+
+//   xhr.onload = function() {
+//     if(xhr.status === 200) {
+//       // console.log(xhr.responseText);
+//       var recipes = JSON.parse(xhr.responseText);
+//       var inside = document.getElementById('ingredientsList');
+//       for (var i = 0; i < ingredients.Results.length; i++) {
+    
+//         materialIcons.appendChild(reveal);
+
+//       }
+//     }
+//   };
+//   var ingredientsList = document.getElementById('ingredientsList').value;
+//   // console.log(keyword);
+
+//   xhr.open('POST', 'http://localhost:1337/recipeID', true);
+//   xhr.send(ingredients);
+// }, false);
