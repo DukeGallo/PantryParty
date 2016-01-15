@@ -16,17 +16,17 @@ router.post('/', textParser, function(req,res) {
       'Content-Type': 'application/json'
     }
   };
-
-  request.get(options, function (error, response, body) {
-    if (!error && res.statusCode == 200) {
-      res.send(body);
-      console.log('call has been made');
+request.get(options, function (error, response, body) {
+  if (!error && res.statusCode == 200) {
+    res.send(body);
+    console.log('call has been made');
     }
   });
 });
 
 router.get('/:recipeID', function(req, res) {
   var recipeID = req.params.recipeID;
+  console.log('here')
   var url = 'http://api.bigoven.com/recipe/' + recipeID + '/?api_key=5CWa265SNXT70ACQbGJ2CFrpi1c6j85v';
   var options = {
     url: url,
@@ -36,12 +36,15 @@ router.get('/:recipeID', function(req, res) {
     }
   };
 
-  request.get(options, function (error, response, body) {
-    if (!error && res.statusCode == 200) {
-      res.send(body);
+request.get(options, function (error, response, body) {
+  if (!error && res.statusCode == 200) {
+    res.send(body);
 
     }
   });
 });
 
 module.exports = router;
+
+
+

@@ -69,7 +69,6 @@ document.getElementById('search-button').addEventListener('keypress', function(e
   xhr.send(keyword);
 }, false);
 
-
  var recipes = document.getElementById('recipe-holder');
 
  recipes.addEventListener('click', function(theEvent) {
@@ -78,48 +77,51 @@ document.getElementById('search-button').addEventListener('keypress', function(e
   var xhr = new XMLHttpRequest();
   xhr.open('GET', '/query/' + id);
   xhr.send();
-
   var xhr = new XMLHttpRequest();
 
   xhr.onload = function() {
     if(xhr.status === 200) {
-    var recipes = JSON.parse(xhr.responseText);
+    var recipeIngredients = JSON.parse(xhr.responseText);
+    console.log(xhr.responseText);
     var ingredients = document.getElementById('card-reveal');
     for (var i = 0; i < RecipeID.Results.length; i++) {
-    console.log(Results);
+    console.log(xhr.Results);
+
     var cardReveal = document.createElement('div');
     cardReveal.setAttribute('id', 'card-reveal');
+    cardReveal.textContent = 'This is a card';
     
     var cardTitle = document.createElement('span');
     cardTitle.setAttribute('class', 'card-title grey-text text-darken-4');
-    
+    cardTitle.textContent = 'this is a card title';
+
     var ingredientsList = document.createElement('p');
     ingredientsList.setAttribute('id', 'ingredientsList');
     ingredientsList.textContent = recipes.Results.Ingredients;
+    ingredientsList.textContent = 'this is a p tag';
 
     var list = document.createElement('li');
     list.setAttribute('li', 'list');
     list.textContent = recipes.Results;
+    list.textContent = 'this is a list';
     
     ingredientsList.appendChild(list);
     cardTitle.appendChild(ingredientsList);
     cardReveal.appendChild(cardTitle);
     recipes.appendChild(cardReveal);
-
+    }
   }
-
-    var keyword = document.getElementById('circle').value;
-  // console.log(keyword);
-
-
-  xhr.open('POST', 'http://localhost:1337/query', true);
-  xhr.send(circle);
-    console.log(res);
-   }
   }
- })
+});
 
+   
+  
+//   var id = document.getElementById('list');
+//   console.log(recipes);
 
+//   xhr.open('GET', 'http://localhost:1337/query/' + 'id', true);
+//   xhr.send(id);
+// }, false);
 
 
 
