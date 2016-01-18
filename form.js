@@ -79,36 +79,84 @@ recipes.addEventListener('click', function(theEvent) {
   xhr.onload = function() {
     if(xhr.status === 200) {
       var recipeIngredients = JSON.parse(xhr.responseText);
-      console.log(xhr.responseText);
-      var ingredients = document.getElementById('card-reveal');
-      for (var i = 0; i < recipeIngredients.Results.length; i++) {
-        console.log(xhr.responseText);
+      var orderedList = document.createElement('ol');
+
+      // console.log(xhr.responseText);
+      var cardInside = document.getElementById('card-reveal');
+      for (var i = 0; i < recipeIngredients.Ingredients.length; i++) {
+        // for (var i = 0; i < recipeIngredients.Ingredients.Name.length; i++) { 
+
+        // var cardReveal = document.createElement('div');
+        // cardReveal.setAttribute('class', 'card-reveal');
+        
+        // var cardTitle = document.createElement('span');
+        // cardTitle.setAttribute('class', 'card-title grey-text text-darken-4');
+        // cardTitle.textContent = recipeIngredients.Title;
+        // console.log(cardTitle.textContent);
+
+        // var ingredientsList = document.createElement('p');
+        // ingredientsList.setAttribute('id', 'ingredientsList');
+        // ingredientsList.textContent = recipeIngredients.Instructions;
+        // console.log(ingredientsList.textContent);
+        
+        var list = document.createElement('li');
+        list.setAttribute('id', 'theingredients');
+        list.textContent = recipeIngredients.Ingredients[i].Name;
+        console.log(list.textContent);
+
+        orderedList.appendChild(list);
+      
+        // ingredientsList.appendChild(list);
+        // cardTitle.appendChild(ingredientsList);
+        // cardReveal.appendChild(cardTitle);
+        // card.appendChild(cardReveal);
+
+        // }
+      }
 
         var cardReveal = document.createElement('div');
-        cardReveal.setAttribute('id', 'card-reveal');
-        cardReveal.textContent = 'This is a card';
-
+        cardReveal.setAttribute('class', 'card-reveal');
+        
         var cardTitle = document.createElement('span');
         cardTitle.setAttribute('class', 'card-title grey-text text-darken-4');
-        cardTitle.textContent = 'this is a card title';
+        cardTitle.textContent = recipeIngredients.Title;
+        console.log(cardTitle.textContent);
 
         var ingredientsList = document.createElement('p');
         ingredientsList.setAttribute('id', 'ingredientsList');
-        ingredientsList.textContent = recipes.Results.Ingredients;
-        ingredientsList.textContent = 'this is a p tag';
+        ingredientsList.textContent = recipeIngredients.Instructions;
+        console.log(ingredientsList.textContent);  
 
-        var list = document.createElement('li');
-        list.setAttribute('li', 'list');
-        list.textContent = recipes.Results;
-        list.textContent = 'this is a list';
+        var modal = document.createElement('div');
+        modal.setAttribute('class', 'modal-content');
 
+        var modalHeader = document.createElement('h4');
+        modalHeader.setAttribute('class', 'modal-header');
+
+        var modalText = document.createElement('p');
+        modalText.setAttribute('class', 'modal-text');
+
+        var iconBlock = document.createElement('div');
+        iconBlock.setAttribute('class', 'icon-block');
+
+
+
+
+        
+       
+
+        
+        cardTitle.appendChild(modalHeader);
+        ingredientsList.appendChild(modalText);
+        list.appendChild(modal);
         ingredientsList.appendChild(list);
         cardTitle.appendChild(ingredientsList);
+        cardTitle.appendChild(orderedList);
         cardReveal.appendChild(cardTitle);
-        recipes.appendChild(cardReveal);
-        }
-      }
+        card.appendChild(cardReveal);
+
     }
+  }
 });
   
     
