@@ -31,6 +31,23 @@
         <div class="row center">
           <h5 class="header col s12 light">Gourmet style cooking, with whatever's in the pantry.</h5>
         </div>
+
+
+          <!-- Modal Trigger -->
+  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
+
+  
         <div class="row center">
           <div class="input-field col s6 push-s3">
             <input placeholder="What's in your pantry?" id="keyword" type="text" class="h2 validate">
@@ -39,7 +56,7 @@
           </div>
         </div>
       </div>
-        <br><br>
+      <br><br>
       </div>
       <div class="parallax"><img src="./images/homeBackground.jpg" alt="homeBackground"></div>
     </div>
@@ -68,7 +85,7 @@
     <div class="section">
       <div class="col s12 center">
         <h3><i class="brown-text"></i></h3>
-        <h4>Most searched nearby</h4>
+        <h4>Most searched nearby</h4>        
         <div id="card"></div>
         </div>
         <div class="row" id="recipe-holder">
@@ -80,24 +97,8 @@
                     <img class="activator" src="http://images.bigoven.com/image/upload/pistachio-cinnamon-chicken-salad.jpg">
                   </div>
                   <div class="card-content" id="recipe-1-outside">
-                    <span class="card-title activator grey-text text-darken-4">Pistachio Cinnamon Chicken Salad<i class="material-icons right" id='reveal'>
-
- <!-- Modal Trigger -->
-  <a class="waves-effect waves-light" href="#modal1"><i class="material-icons right">more_vert</i></a>
-
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4 class="modal-header">Modal Header</h4>
-      <p class="modal-text">A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
-  </div>
-          
-                    </i></span>
-                  </div>
+                    <span class="card-title activator grey-text text-darken-4">Pistachio Cinnamon Chicken Salad<i class="material-icons right">more_vert</i></span>
+                    </div>
                   <div class="card-reveal" id="recipe-inside">
                     <span class="card-title grey-text text-darken-4">Pistachio Cinnamon Chicken Salad<i id="circle" class="material-icons right">close</i></span>
                     <p data-recipe id = 'ingredientsList'>
@@ -303,6 +304,7 @@
         </div>
       </div>
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="/js/materialize.js"></script>
     <script src="js/init.js"></script>

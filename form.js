@@ -70,6 +70,13 @@ document.getElementById('search-button').addEventListener('click', function(e) {
 var recipes = document.getElementById('recipe-holder');
 
 recipes.addEventListener('click', function(theEvent) {
+
+  $(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('#modal1').leanModal();
+  });
+
+
   var id = theEvent.target.getAttribute('data-recipe');
   console.log(id);
   var xhr = new XMLHttpRequest();
@@ -79,39 +86,16 @@ recipes.addEventListener('click', function(theEvent) {
   xhr.onload = function() {
     if(xhr.status === 200) {
       var recipeIngredients = JSON.parse(xhr.responseText);
-      var orderedList = document.createElement('ol');
-
-      // console.log(xhr.responseText);
+      var orderedList = document.createElement('ul');
       var cardInside = document.getElementById('card-reveal');
       for (var i = 0; i < recipeIngredients.Ingredients.length; i++) {
-        // for (var i = 0; i < recipeIngredients.Ingredients.Name.length; i++) { 
 
-        // var cardReveal = document.createElement('div');
-        // cardReveal.setAttribute('class', 'card-reveal');
-        
-        // var cardTitle = document.createElement('span');
-        // cardTitle.setAttribute('class', 'card-title grey-text text-darken-4');
-        // cardTitle.textContent = recipeIngredients.Title;
-        // console.log(cardTitle.textContent);
-
-        // var ingredientsList = document.createElement('p');
-        // ingredientsList.setAttribute('id', 'ingredientsList');
-        // ingredientsList.textContent = recipeIngredients.Instructions;
-        // console.log(ingredientsList.textContent);
-        
         var list = document.createElement('li');
         list.setAttribute('id', 'theingredients');
         list.textContent = recipeIngredients.Ingredients[i].Name;
         console.log(list.textContent);
 
         orderedList.appendChild(list);
-      
-        // ingredientsList.appendChild(list);
-        // cardTitle.appendChild(ingredientsList);
-        // cardReveal.appendChild(cardTitle);
-        // card.appendChild(cardReveal);
-
-        // }
       }
 
         var cardReveal = document.createElement('div');
@@ -128,7 +112,10 @@ recipes.addEventListener('click', function(theEvent) {
         console.log(ingredientsList.textContent);  
 
         var modal = document.createElement('div');
-        modal.setAttribute('class', 'modal-content');
+        modal.setAttribute('class', 'modal');
+
+        var modalContent = document.createElement('div');
+        modalContent.setAttribute('class', 'modal-content');
 
         var modalHeader = document.createElement('h4');
         modalHeader.setAttribute('class', 'modal-header');
@@ -139,25 +126,20 @@ recipes.addEventListener('click', function(theEvent) {
         var iconBlock = document.createElement('div');
         iconBlock.setAttribute('class', 'icon-block');
 
-
-
-
-        
-       
-
-        
         cardTitle.appendChild(modalHeader);
         ingredientsList.appendChild(modalText);
+        list.appendChild(modalContent);
+        modal.appendChild(modalContent)
         list.appendChild(modal);
         ingredientsList.appendChild(list);
         cardTitle.appendChild(ingredientsList);
         cardTitle.appendChild(orderedList);
         cardReveal.appendChild(cardTitle);
         card.appendChild(cardReveal);
-
     }
   }
 });
+
   
     
   
