@@ -49,7 +49,7 @@ function createModal(recipeResponse) {
   modal.setAttribute('id', 'modal-' + recipeResponse.RecipeID);
 
   var modalContent = document.createElement('div');
-  modalContent.setAttribute('class', 'modal-content');
+  modalContent.setAttribute('class', 'modal-content, row');
 
   var modalFooter = document.createElement('div');
   modalFooter.setAttribute('class', 'modal-footer');
@@ -63,9 +63,11 @@ function createModal(recipeResponse) {
   modalText.textContent = recipeResponse.Instructions;
   
   var image = new Image(200,200); 
+  image.setAttribute('class', 'col s6');
   image.src = recipeResponse.ImageURL;
 
-  var list = document.createElement('ul');
+  var list = document.createElement('ol');
+  list.setAttribute('class', 'col s6');
 
   for (var i = 0; i < recipeResponse.Ingredients.length; i++) {
     var listItem = document.createElement('li');
@@ -73,6 +75,7 @@ function createModal(recipeResponse) {
     list.appendChild(listItem);
     console.log(listItem.textContent);
   }
+
   modalContent.appendChild(modalHeader);
   modalContent.appendChild(list);
   modalContent.appendChild(image);
@@ -81,7 +84,7 @@ function createModal(recipeResponse) {
   modal.appendChild(modalFooter);
   body.appendChild(modal);
 
-  modal.style.cssText = 'z-index: 1003; display:block; opacity: 1; transform: scaleZ(1); top: 10%;';
+  modal.style.cssText = 'z-index: 1003; display:block; opacity: 1; transform: scaleZ(1); top: 10%; padding: 5%;';
 
   console.log(recipeResponse.ImageURL);
   // console.log(ingredientist.textContent);
