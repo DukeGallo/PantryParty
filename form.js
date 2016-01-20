@@ -1,147 +1,118 @@
-document.getElementById('search-button').addEventListener('click', function(e) {
-  e.preventDefault();
-  document.getElementById('search-button').addEventListener('keypress', function(e) {
-    var key = e.which || e.keyCode;
-    if (key === 13) {
-    }
-  });  
-  var xhr = new XMLHttpRequest();
+function createCard(searchResponse) {
+  var holder = document.getElementById('recipe-holder');
+  holder.innerHTML = '';
 
+  for (var i = 0; i < searchResponse.Results.length; i++) {
+
+    var col = document.createElement('div');
+    col.setAttribute('class', 'col s12 m4');
+
+    var card = document.createElement('div');
+    card.setAttribute('class', 'card');
+    
+    var cardImage = document.createElement('div');
+    cardImage.setAttribute('class', 'card-image waves-effect waves-block waves-light');
+
+    var cardContent = document.createElement('div');
+    cardContent.setAttribute('class', 'card-content');
+    
+    var activator = document.createElement('img');
+    activator.setAttribute('class', 'activator');
+    activator.setAttribute('src', searchResponse.Results[i].ImageURL);
+
+    var cardTitle = document.createElement('span');
+    cardTitle.setAttribute('class', 'card-title activator grey-text text-darken-4');
+    cardTitle.textContent = searchResponse.Results[i].Title;
+
+    var materialIcons = document.createElement('i');
+    materialIcons.setAttribute('data-recipe', searchResponse.Results[i].RecipeID)
+    materialIcons.setAttribute('class', 'material-icons right');
+    materialIcons.textContent = 'more_vert';
+
+    cardImage.appendChild(activator);
+    cardTitle.appendChild(materialIcons);
+    cardContent.appendChild(cardTitle);
+    card.appendChild(cardImage);
+    card.appendChild(cardContent);
+    col.appendChild(card);
+    holder.appendChild(col); 
+  }
+  holder.scrollIntoView();
+}
+
+function createModal(recipeResponse) {
+  
+  var body = document.body;
+
+  var modal = document.createElement('div');
+  modal.setAttribute('class', 'modal');
+  modal.setAttribute('id', 'modal-' + recipeResponse.RecipeID);
+
+  var modalContent = document.createElement('div');
+  modalContent.setAttribute('class', 'modal-content');
+
+  var modalFooter = document.createElement('div');
+  modalFooter.setAttribute('class', 'modal-footer');
+
+  var modalHeader = document.createElement('h4');
+  modalHeader.setAttribute('class', 'modal-header');
+  modalHeader.textContent = recipeResponse.Title;
+
+  var modalText = document.createElement('p');
+  modalText.setAttribute('class', 'modal-text');
+  modalText.textContent = recipeResponse.Instructions;
+  
+  var image = new Image(200,200); 
+  image.src = recipeResponse.ImageURL;
+
+  var list = document.createElement('ul');
+
+  for (var i = 0; i < recipeResponse.Ingredients.length; i++) {
+    var listItem = document.createElement('li');
+    listItem.textContent = recipeResponse.Ingredients[i].Name; 
+    list.appendChild(listItem);
+    console.log(listItem.textContent);
+  }
+  modalContent.appendChild(modalHeader);
+  modalContent.appendChild(list);
+  modalContent.appendChild(image);
+  modalContent.appendChild(modalText); 
+  modal.appendChild(modalContent);
+  modal.appendChild(modalFooter);
+  body.appendChild(modal);
+
+  modal.style.cssText = 'z-index: 1003; display:block; opacity: 1; transform: scaleZ(1); top: 10%;';
+
+  console.log(recipeResponse.ImageURL);
+  // console.log(ingredientist.textContent);
+}
+
+document.getElementById('search-button').addEventListener('click', function(e) {
+  e.preventDefault();  
+  var xhr = new XMLHttpRequest();
   xhr.onload = function() {
     if(xhr.status === 200) {
       var recipes = JSON.parse(xhr.responseText);
-      var holder = document.getElementById('recipe-holder');
-      holder.innerHTML = '';
-      for (var i = 0; i < recipes.Results.length; i++) {
-
-        var id = document.createElement('div');
-        id.setAttribute('id', 'card');
-
-        var col = document.createElement('div');
-        col.setAttribute('class', 'col s12 m4');
-
-        var iconBlock = document.createElement('div');
-        iconBlock.setAttribute('class', 'icon-block');
-        
-        var light = document.createElement('p');
-        light.setAttribute('class', 'light');
-        
-        var card = document.createElement('div');
-        card.setAttribute('class', 'card');
-
-        var cardImage = document.createElement('div');
-        cardImage.setAttribute('class', 'card-image waves-effect waves-block waves-light');
-
-        var activator = document.createElement('img');
-        activator.setAttribute('class', 'activator');
-        activator.setAttribute('src', recipes.Results[i].ImageURL);
-
-        var cardContent = document.createElement('div');
-        cardContent.setAttribute('class', 'card-content');
-
-        var cardTitle = document.createElement('span');
-        cardTitle.setAttribute('class', 'card-title activator grey-text text-darken-4');
-        cardTitle.textContent = recipes.Results[i].Title;
-
-        var materialIcons = document.createElement('i');
-        materialIcons.setAttribute('data-recipe', recipes.Results[i].RecipeID)
-        materialIcons.setAttribute('class', 'material-icons right');
-        materialIcons.textContent = 'more_vert';
-
-        cardTitle.appendChild(materialIcons);
-        cardContent.appendChild(cardTitle);
-        cardImage.appendChild(activator);
-        card.appendChild(cardImage);
-        card.appendChild(cardContent);
-        light.appendChild(card);
-        iconBlock.appendChild(light);
-        col.appendChild(iconBlock);
-        holder.appendChild(col);
-      }
-      document.getElementById('card').scrollIntoView();e
+      createCard(recipes);
     }
   };
   var keyword = document.getElementById('keyword').value;
-
   xhr.open('POST', 'http://localhost:1337/query', true);
   xhr.send(keyword);
 }, false);
 
 var recipes = document.getElementById('recipe-holder');
-
 recipes.addEventListener('click', function(theEvent) {
-
-  $(document).ready(function(){
-    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-    $('#modal1').leanModal();
-  });
-
-
   var id = theEvent.target.getAttribute('data-recipe');
   console.log(id);
   var xhr = new XMLHttpRequest();
   xhr.open('GET', '/query/' + id);
   xhr.send(recipes);
-  
   xhr.onload = function() {
     if(xhr.status === 200) {
       var recipeIngredients = JSON.parse(xhr.responseText);
-      var orderedList = document.createElement('ul');
-      var cardInside = document.getElementById('card-reveal');
-      for (var i = 0; i < recipeIngredients.Ingredients.length; i++) {
-
-        var list = document.createElement('li');
-        list.setAttribute('id', 'theingredients');
-        list.textContent = recipeIngredients.Ingredients[i].Name;
-        console.log(list.textContent);
-
-        orderedList.appendChild(list);
-      }
-
-        var cardReveal = document.createElement('div');
-        cardReveal.setAttribute('class', 'card-reveal');
-        
-        var cardTitle = document.createElement('span');
-        cardTitle.setAttribute('class', 'card-title grey-text text-darken-4');
-        cardTitle.textContent = recipeIngredients.Title;
-        console.log(cardTitle.textContent);
-
-        var ingredientsList = document.createElement('p');
-        ingredientsList.setAttribute('id', 'ingredientsList');
-        ingredientsList.textContent = recipeIngredients.Instructions;
-        console.log(ingredientsList.textContent);  
-
-        var modal = document.createElement('div');
-        modal.setAttribute('class', 'modal');
-
-        var modalContent = document.createElement('div');
-        modalContent.setAttribute('class', 'modal-content');
-
-        var modalHeader = document.createElement('h4');
-        modalHeader.setAttribute('class', 'modal-header');
-
-        var modalText = document.createElement('p');
-        modalText.setAttribute('class', 'modal-text');
-
-        var iconBlock = document.createElement('div');
-        iconBlock.setAttribute('class', 'icon-block');
-
-        cardTitle.appendChild(modalHeader);
-        ingredientsList.appendChild(modalText);
-        list.appendChild(modalContent);
-        modal.appendChild(modalContent)
-        list.appendChild(modal);
-        ingredientsList.appendChild(list);
-        cardTitle.appendChild(ingredientsList);
-        cardTitle.appendChild(orderedList);
-        cardReveal.appendChild(cardTitle);
-        card.appendChild(cardReveal);
+      createModal(recipeIngredients);
+    
     }
   }
 });
-
-  
-    
-  
-    
-  
