@@ -4,7 +4,8 @@
   "description": "PantryParty is a website for individuals tho want to know recipies they can make at home using only what they already have in their pantry.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
