@@ -100,7 +100,7 @@ document.getElementById('search-button').addEventListener('click', function(e) {
     }
   };
   var keyword = document.getElementById('keyword').value;
-  xhr.open('POST', 'http://localhost:1337/query', true);
+  xhr.open('POST', '/query', true);
   xhr.send(keyword);
 }, false);
 
