@@ -1,5 +1,5 @@
 .body {
-  background-image: url("./images/wood.jpg"); 
+  background-image: url("./public/images/wood.jpg"); 
 }
 .show {
   display: block !important;
@@ -10,29 +10,23 @@
 .invisible {
   visibility: hidden;
 }
-
 .activator {
   height: 200px;
-
 }
 .card-content {
   height: 128px;
   overflow: scroll;
 }
-
 nav ul a,
 nav .brand-logo {
   color: #444;git 
 }
-
 p {
   line-height: 2rem;
 }
-
 .button-collapse {
   color: #26a69a;
 }
-
 .parallax-container {
   min-height: 380px;
   line-height: 0;
@@ -42,7 +36,6 @@ p {
   .parallax-container .section {
     width: 100%;
   }
-
 @media only screen and (max-width : 992px) {
   .parallax-container .section {
     position: absolute;
@@ -52,20 +45,17 @@ p {
     top: 10%;
   }
 }
-
 @media only screen and (max-width : 600px) {
   #index-banner .section {
     top: 0;
   }
 }
-
 .icon-block {
   padding: 0 15px;
 }
 .icon-block .material-icons {
   font-size: inherit;
 }
-
 footer.page-footer {
   margin: 0;
 }
