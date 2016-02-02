@@ -5,9 +5,9 @@ var rp = require('request-promise');
 var bodyParser = require('body-parser');
 var textParser = bodyParser.text();
 
-router.post('/', textParser, function(req,res) {
+router.post('/', textParser, function(req,res) {  
   var input = req.body;
-  var url = 'http://api.bigoven.com/recipes/?api_key=5CWa265SNXT70ACQbGJ2CFrpi1c6j85v&pg=1&rpp=10&any_kw=' + input;
+  var url = 'http://api.bigoven.com/recipes/?api_key=nSA7xkdM01mjP2k6D4X5Sf9IQGBXvViw&pg=1&rpp=10&any_kw=' + input;
   console.log(url);
   var options = {
     url: url,
@@ -28,7 +28,7 @@ request.get(options, function (error, response, body) {
 router.get('/:recipeID', function(req, res) {
   var recipeID = req.params.recipeID;
   console.log('ID is en route!')
-  var url = 'http://api.bigoven.com/recipe/' + recipeID + '/?api_key=5CWa265SNXT70ACQbGJ2CFrpi1c6j85v';
+  var url = 'http://api.bigoven.com/recipe/' + recipeID + '/?api_key=nSA7xkdM01mjP2k6D4X5Sf9IQGBXvViw';
   var options = {
     url: url,
     headers: {
