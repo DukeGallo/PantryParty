@@ -73,7 +73,6 @@ function createModal(recipeResponse) {
     var listItem = document.createElement('li');
     listItem.textContent = recipeResponse.Ingredients[i].Name; 
     list.appendChild(listItem);
-    console.log(listItem.textContent);
   }
 
   modalContent.appendChild(modalHeader);
@@ -83,14 +82,10 @@ function createModal(recipeResponse) {
   modal.appendChild(modalContent);
   modal.appendChild(modalFooter);
   body.appendChild(modal);
-
   modal.style.cssText = 'z-index: 1003; display:block; opacity: 1; transform: scaleZ(1); top: 10%; padding: 5%;';
-
-  console.log(recipeResponse.ImageURL);
-  // console.log(ingredientist.textContent);
 }
 
-document.getElementById('search-button').addEventListener('click', function(e) {
+document.getElementById('search').addEventListener('submit', function(e) {
   e.preventDefault();  
   var xhr = new XMLHttpRequest();
   xhr.onload = function() {
@@ -107,7 +102,6 @@ document.getElementById('search-button').addEventListener('click', function(e) {
 var recipes = document.getElementById('recipe-holder');
 recipes.addEventListener('click', function(theEvent) {
   var id = theEvent.target.getAttribute('data-recipe');
-  console.log(id);
   var xhr = new XMLHttpRequest();
   xhr.open('GET', '/query/' + id);
   xhr.send(recipes);
