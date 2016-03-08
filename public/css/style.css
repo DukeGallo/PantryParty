@@ -15,7 +15,6 @@
 }
 .card-content {
   height: 128px;
-  overflow: scroll;
 }
 nav ul a,
 nav .brand-logo {
